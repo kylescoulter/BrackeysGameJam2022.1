@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.MimicGame.iml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\Kyle\RiderProjects\BrackeysGameJam2022.1\MimicGame\.idea\.idea.MimicGame\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
