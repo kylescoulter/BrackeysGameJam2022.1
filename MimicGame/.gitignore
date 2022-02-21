@@ -63,3 +63,4 @@ crashlytics-build.properties
 !.gitignore
 !/Assets/
 !/ProjectSettings/
+/UserSettings/EditorUserSettings.asset
