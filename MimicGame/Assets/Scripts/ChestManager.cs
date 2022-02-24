@@ -23,6 +23,8 @@ namespace UnityTemplateProjects
         [SerializeField] private Material silverLock;
         [SerializeField] private Material magicLock;
         [SerializeField] private Material lockTrim;
+        
+        [SerializeField] private Material mimicChest;
 
         private List<Material> chestMats = new List<Material>();
         private List<Material> trimMats = new List<Material>();
@@ -41,6 +43,11 @@ namespace UnityTemplateProjects
             FillMaterialLists();
             RandomizeChest();
             chest = chestObj.GetComponent<Chest>();
+            CheckMimic();
+            if (chest.isMimic)
+            {
+                chestMaterial = mimicChest;
+            }
         }
 
         public GameObject GenerateChest()
@@ -131,8 +138,251 @@ namespace UnityTemplateProjects
                         }
                     }
                 }
+                else if (chest.trimMaterial == silverTrim)
+                {
+                    if (chest.lockMaterial == ironLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == silverLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == magicLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                }
+                else if (chest.trimMaterial == goldTrim)
+                {
+                    if (chest.lockMaterial == ironLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == silverLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = false;
+                        }
+                    }
+                    else if (chest.lockMaterial == magicLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                }
             }
             else if (chest.chestMaterial == redChest)
+            {
+                if (chest.trimMaterial == ironTrim)
+                {
+                    if (chest.lockMaterial == ironLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == silverLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == magicLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                }
+                else if (chest.trimMaterial == silverTrim)
+                {
+                    if (chest.lockMaterial == ironLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == silverLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == magicLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = false;
+                        }
+                    }
+                }
+                else if (chest.trimMaterial == goldTrim)
+                {
+                    if (chest.lockMaterial == ironLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == silverLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = false;
+                        }
+                    }
+                    else if (chest.lockMaterial == magicLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = false;
+                        }
+                    }
+                }
+            }
+            else if (chest.chestMaterial == greenChest)
             {
                 if (chest.trimMaterial == ironTrim)
                 {
@@ -144,93 +394,137 @@ namespace UnityTemplateProjects
                         }
                         else if (chest.owner.Equals("ogre"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                     }
                     else if (chest.lockMaterial == silverLock)
                     {
                         if (chest.owner.Equals("goblin"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("ogre"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                     }
                     else if (chest.lockMaterial == magicLock)
                     {
                         if (chest.owner.Equals("goblin"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("ogre"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                     }
                 }
-            }
-
-            else if (chest.chestMaterial == greenChest)
-            {
-                if (chest.trimMaterial == ironTrim)
+                else if (chest.trimMaterial == silverTrim)
                 {
                     if (chest.lockMaterial == ironLock)
                     {
                         if (chest.owner.Equals("goblin"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("ogre"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                     }
                     else if (chest.lockMaterial == silverLock)
                     {
                         if (chest.owner.Equals("goblin"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                         else if (chest.owner.Equals("ogre"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            
+                            chest.isMimic = true;
                         }
                     }
                     else if (chest.lockMaterial == magicLock)
                     {
                         if (chest.owner.Equals("goblin"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("ogre"))
                         {
-                            
+                            chest.isMimic = false;
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            
+                            chest.isMimic = true;
+                        }
+                    }
+                }
+                else if (chest.trimMaterial == goldTrim)
+                {
+                    if (chest.lockMaterial == ironLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = true;
+                        }
+                    }
+                    else if (chest.lockMaterial == silverLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = false;
+                        }
+                    }
+                    else if (chest.lockMaterial == magicLock)
+                    {
+                        if (chest.owner.Equals("goblin"))
+                        {
+                            chest.isMimic = false;
+                        }
+                        else if (chest.owner.Equals("ogre"))
+                        {
+                            chest.isMimic = true;
+                        }
+                        else if (chest.owner.Equals("elf"))
+                        {
+                            chest.isMimic = false;
                         }
                     }
                 }
