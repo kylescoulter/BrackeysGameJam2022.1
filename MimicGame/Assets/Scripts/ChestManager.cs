@@ -7,7 +7,14 @@ namespace UnityTemplateProjects
 {
     public class ChestManager : MonoBehaviour
     {
+        [Header("Chest Objects")]
         [SerializeField] private GameObject chestObj;
+
+        [Header("Owner Objects")] 
+        [SerializeField] private List<GameObject> goblinObjects;
+        [SerializeField] private List<GameObject> ogreObjects;
+        [SerializeField] private List<GameObject> elfObjects;
+        
         [Header("Chest Materials")]
         [SerializeField] private Material brownChest;
         [SerializeField] private Material redChest;
@@ -30,6 +37,7 @@ namespace UnityTemplateProjects
         private List<Material> trimMats = new List<Material>();
         private List<Material> lockMats = new List<Material>();
         private List<String> owners = new List<string>();
+        
         private Material chestMaterial;
         private Material trimMaterial;
         private Material lockBaseMaterial;
@@ -46,7 +54,7 @@ namespace UnityTemplateProjects
             CheckMimic();
             if (chest.isMimic)
             {
-                chestMaterial = mimicChest;
+                lockTrim = mimicChest;
             }
         }
 
@@ -54,6 +62,31 @@ namespace UnityTemplateProjects
         {
             chestObj.GetComponent<Chest>().ReskinChest(chestMaterial, trimMaterial, lockBaseMaterial, lockTrim, owner, rune);
             return chestObj;
+        }
+
+        public void SpawnOwnerItems(List<RectTransform> spawns)
+        {
+            if (chest.owner.Equals("goblin"))
+            {
+                foreach (var obj in goblinObjects)
+                {
+                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
+                }
+            }
+            else if (chest.owner.Equals("ogre")) 
+            {
+                foreach (var obj in ogreObjects)
+                {
+                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
+                }
+            }
+            else if (chest.owner.Equals("elf")) 
+            {
+                foreach (var obj in elfObjects)
+                {
+                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
+                }
+            }
         }
 
         private void FillMaterialLists()
@@ -73,7 +106,6 @@ namespace UnityTemplateProjects
             owners.Add("goblin");
             owners.Add("ogre");
             owners.Add("elf");
-            
         }
 
         private void RandomizeChest()
@@ -85,6 +117,9 @@ namespace UnityTemplateProjects
             
             rune = Random.Range(0, 2) == 1;
         }
+
+        #region ChestLogic
+
 
         private void CheckMimic()
         {
@@ -530,5 +565,8 @@ namespace UnityTemplateProjects
                 }
             }
         }
+        #endregion
+        
+        
     }
 }

@@ -1074,6 +1074,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chestObj: {fileID: 3281110894430138066, guid: 781d70d2c4b94e4428de037901e5d1c8,
     type: 3}
+  goblinObjects:
+  - {fileID: 8492224011529538821, guid: 4d320152aa281bd4b90c658431752127, type: 3}
+  - {fileID: 7836665351783252631, guid: 3a3db062fffc95d45920805c5c5498e8, type: 3}
+  - {fileID: 3776373213307632820, guid: 42e7f64c9f029464c8b71f3ab15a2fef, type: 3}
+  ogreObjects:
+  - {fileID: 2752943048672870924, guid: d5bd02e80e726874c86af7deac42c7ad, type: 3}
+  - {fileID: 6991939908810819371, guid: c4c3fe54ce1b1a94383960bac2034cd1, type: 3}
+  - {fileID: 3397225492708023338, guid: c2ba2a8d70aaa784284809c1df04f085, type: 3}
+  elfObjects:
+  - {fileID: 678280723392568345, guid: ac1656f708adaa74f836ce49c56a251e, type: 3}
+  - {fileID: 3381127094370868662, guid: 8de4d5e5be50077458969b56a1314aa0, type: 3}
+  - {fileID: 2502355228831226767, guid: f78208ecbd986c949b8033d22648097f, type: 3}
   brownChest: {fileID: 2100000, guid: b5a7b130526d5fc4aa81c7e4d7a0f22d, type: 2}
   redChest: {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
   greenChest: {fileID: 2100000, guid: f8a8ab06dc3f9ed46893114e70492b58, type: 2}
@@ -1084,6 +1096,7 @@ MonoBehaviour:
   silverLock: {fileID: 2100000, guid: 6ca8e6e102cd17a449df44a75bfd538b, type: 2}
   magicLock: {fileID: 2100000, guid: bdbaa4e8126733342a3f574ff670795e, type: 2}
   lockTrim: {fileID: 2100000, guid: a3fa473dc4123734f8af397b17db32c4, type: 2}
+  mimicChest: {fileID: 2100000, guid: 711a3afce5680cd4fa3b2e49149810a5, type: 2}
 --- !u!1 &942554200
 GameObject:
   m_ObjectHideFlags: 0

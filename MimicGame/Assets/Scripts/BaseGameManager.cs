@@ -11,7 +11,6 @@ namespace UnityTemplateProjects
     {
         public static ChestManager chestManager;
         public static Action levelLoaded;
-        
         [SerializeField] private Button startButton;
         
 
