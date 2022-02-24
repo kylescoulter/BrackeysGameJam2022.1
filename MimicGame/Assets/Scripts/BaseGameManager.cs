@@ -9,13 +9,17 @@ namespace UnityTemplateProjects
 {
     public class BaseGameManager : MonoBehaviour
     {
-        [SerializeField] private Button startButton;
+        public static ChestManager chestManager;
         public static Action levelLoaded;
+        
+        [SerializeField] private Button startButton;
+        
 
         private void Start()
         {
             startButton.onClick.AddListener(delegate { SceneManager.LoadScene("Map"); });
+            DontDestroyOnLoad(this);
+            chestManager = GetComponent<ChestManager>();
         }
-        
     }
 }
