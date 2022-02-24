@@ -20,8 +20,6 @@ namespace UnityTemplateProjects
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow =
                 GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
             mainCamera = GameObject.Find("MainCamera");
-            
-            
         }
 
         private void Start()
