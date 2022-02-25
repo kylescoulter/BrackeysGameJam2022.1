@@ -78,7 +78,7 @@ namespace StarterAssets
 		
 		public void InteractInput(bool newInteractState)
 		{
-			sprint = newInteractState;
+			interact = newInteractState;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID
