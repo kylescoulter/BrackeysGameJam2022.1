@@ -1,3 +1,4 @@
+using System;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
@@ -9,8 +10,12 @@ namespace UnityTemplateProjects
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject mainCamera;
         
+        
         private static GameObject player;
         private static GameObject playerFollowCamera;
+        private StarterAssetsInputs inputs;
+        [SerializeField] private GameObject book;
+        [SerializeField] private Animator bookAnimator;
 
         private void Awake()
         {
@@ -19,16 +24,30 @@ namespace UnityTemplateProjects
             playerFollowCamera = GameObject.FindGameObjectWithTag("PlayerFollowCamera");
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow =
                 GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
-            mainCamera = GameObject.Find("MainCamera");
+            //mainCamera = GameObject.Find("MainCamera");
+
+            inputs = player.GetComponent<StarterAssetsInputs>();
         }
 
         private void Start()
         {
-            BaseGameManager.levelLoaded = EnablePlayer;
+            BaseGameManager.levelLoaded = EnablePlayer; 
+            
             DisablePlayer();
             DontDestroyOnLoad(player);
             DontDestroyOnLoad(playerFollowCamera);
             DontDestroyOnLoad(mainCamera);
+        }
+
+        private void Update()
+        {
+            if (inputs.interact)
+            {
+                Instantiate(book);
+                book.transform.position = new Vector3(player.transform.position.x + 5, player.transform.position.y,
+                    player.transform.position.z);
+                bookAnimator.SetTrigger("Open");
+            }
         }
 
         public static void EnablePlayer()
