@@ -18,11 +18,16 @@ namespace UnityTemplateProjects
         private List<Transform> itemList;
 
 
-        private void Start()
-        {
+        private void Awake()
+        { 
             player = PlayerManager.GetPlayer();
             player.GetComponent<Inputs>().cursorLocked = true;
-            player.transform.position = playerSpawn.position;
+            player.transform.position = playerSpawn.localPosition;
+            player.transform.rotation = playerSpawn.localRotation;
+        }
+
+        private void Start()
+        {
             SpawnChest();
             SpawnItems();
         }
