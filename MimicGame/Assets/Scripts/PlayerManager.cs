@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace UnityTemplateProjects
         private PlayerInput playerInput;
         private GameObject book;
         private BookManager bookManager;
+        private Chest chest;
+        private Boolean chestMarked;
         
 
         private void Awake()
@@ -35,11 +38,14 @@ namespace UnityTemplateProjects
             
             playerInput = player.GetComponent<PlayerInput>();
             inputs = player.GetComponent<Inputs>();
+
+            
         }
 
         private void Start()
         {
-            BaseGameManager.levelLoaded = EnablePlayer; 
+            BaseGameManager.levelLoaded += EnablePlayer;
+            
             
             DisablePlayer();
             DontDestroyOnLoad(player);
@@ -64,15 +70,32 @@ namespace UnityTemplateProjects
                 playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
                 Debug.Log("Action Map Is : " + playerInput.currentActionMap);
             }
+
+            if (inputs.interact && !chestMarked)
+            {
+                Debug.Log("Attempting to mark");
+                chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
+                chestMarked = chest.ActivateMark();
+            }
+
+            /*if (inputs.interact && chestMarked)
+            {
+                Debug.Log("Removing Mark");
+                chestMarked = chest.DeactivateMark();
+            }*/
+            
+            
         }
 
-        public static void EnablePlayer()
+        public void EnablePlayer()
         {
             player.SetActive(true); 
             playerFollowCamera.SetActive(true);
+            //chest = BaseGameManager.chestManager.GetChest().GetComponent<Chest>();
+            //Debug.Log("Chest color " + chest.chestMaterial.color);
         }
 
-        public static void DisablePlayer()
+        public void DisablePlayer()
         {
             player.SetActive(false);
             playerFollowCamera.SetActive(false);
