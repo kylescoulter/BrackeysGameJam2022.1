@@ -254,7 +254,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
+  - {fileID: 2100000, guid: f8a8ab06dc3f9ed46893114e70492b58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -567,10 +567,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trimMaterial: {fileID: 2100000, guid: 568b241cc066f584ebf550b6515908dc, type: 2}
-  chestMaterial: {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
-  lockMaterial: {fileID: 2100000, guid: 7b47717edc7d6a64f994f92659af067b, type: 2}
-  owner: goblin
-  hasRune: 0
+  chestMaterial: {fileID: 2100000, guid: f8a8ab06dc3f9ed46893114e70492b58, type: 2}
+  lockMaterial: {fileID: 2100000, guid: bdbaa4e8126733342a3f574ff670795e, type: 2}
+  owner: elf
+  hasRune: 1
   isMimic: 1
   chestObject: {fileID: 561501174828149635}
   trimObject: {fileID: 7558450510239838929}
@@ -1446,7 +1446,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
+  - {fileID: 2100000, guid: f8a8ab06dc3f9ed46893114e70492b58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1771,7 +1771,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7b47717edc7d6a64f994f92659af067b, type: 2}
+      objectReference: {fileID: 2100000, guid: bdbaa4e8126733342a3f574ff670795e, type: 2}
     - target: {fileID: 3578715342217725280, guid: 34029072556f9e54e87971743b294217,
         type: 3}
       propertyPath: m_Name
