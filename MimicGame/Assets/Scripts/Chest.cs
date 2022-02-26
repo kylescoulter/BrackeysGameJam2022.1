@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 namespace UnityTemplateProjects
 {
@@ -12,7 +14,7 @@ namespace UnityTemplateProjects
         public String owner;
         public Boolean hasRune;
         public Boolean isMimic;
-        
+
         [Header("Chest Renderers")]
         [SerializeField] private GameObject chestObject;
         [SerializeField] private GameObject trimObject;
@@ -25,6 +27,8 @@ namespace UnityTemplateProjects
         [SerializeField] private GameObject markHint;
 
         private bool markable;
+        private int prize;
+        private int payment;
 
         public void ReskinChest(Material chestMat, Material trimMat, Material lockMat, Material lockTrimMat, String ownerStr, bool rune)
         {
@@ -49,6 +53,8 @@ namespace UnityTemplateProjects
             lockBase.material = lockMat;
             owner = ownerStr;
             hasRune = rune;
+
+            prize = Random.Range(100, 1000);
         }
 
         public Boolean ActivateMark()

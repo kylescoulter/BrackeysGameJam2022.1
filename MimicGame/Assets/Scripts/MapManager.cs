@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,11 @@ public class MapManager : MonoBehaviour
     public Button TavernBtn;
     public Button DungeonBtn;
     public Button ForestBtn;
+
+    [SerializeField] private TextMeshProUGUI tavernPayment;
+    [SerializeField] private TextMeshProUGUI dungeonPayment;
+    [SerializeField] private TextMeshProUGUI forestPayment;
+    
 
    
     
@@ -20,6 +26,10 @@ public class MapManager : MonoBehaviour
         DungeonBtn.onClick.AddListener(LoadDungeon);
         ForestBtn.onClick.RemoveAllListeners();
         ForestBtn.onClick.AddListener(LoadForest);
+        
+        
+        SetPayments();
+        
     }
 
     // Update is called once per frame
@@ -49,6 +59,13 @@ public class MapManager : MonoBehaviour
     {
         SceneManager.LoadScene("Forest");
         BaseGameManager.levelLoaded?.Invoke();
+    }
+
+    private void SetPayments()
+    {
+        tavernPayment.text = BaseGameManager.GetTavernPayment() + "p";
+        dungeonPayment.text = BaseGameManager.GetDungeonPayment() + "p";
+        forestPayment.text = BaseGameManager.GetForestPayment() + "p";
     }
     
     
