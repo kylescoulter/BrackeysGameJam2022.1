@@ -455,9 +455,9 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31309876, y: 0.71241915, z: 0.6909608}
   m_Center: {x: -1.1384861, y: -0.6492647, z: 0.6157409}
---- !u!1 &15836586 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5967831514915372244, guid: ed71d8efc26798e4ea7dfe7e99b8151c,
+--- !u!4 &15836586 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1345465830441641321, guid: ed71d8efc26798e4ea7dfe7e99b8151c,
     type: 3}
   m_PrefabInstance: {fileID: 15836574}
   m_PrefabAsset: {fileID: 0}
