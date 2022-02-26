@@ -23,5 +23,7 @@ namespace UnityTemplateProjects
             chestManager = GetComponent<ChestManager>();
             time.text = DateTime.Now.ToString("HH:mm tt");
         }
+        
+        
     }
 }

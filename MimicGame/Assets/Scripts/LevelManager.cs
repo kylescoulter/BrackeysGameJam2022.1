@@ -14,6 +14,7 @@ namespace UnityTemplateProjects
         [SerializeField] private Transform chestSpawn;
         [SerializeField] private GameObject itemSpawn;
         [SerializeField] private Transform playerSpawn;
+        [SerializeField] private GameObject exitDoor;
         private GameObject player;
         private List<Transform> itemList;
 

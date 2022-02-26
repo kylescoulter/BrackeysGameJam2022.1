@@ -14,8 +14,11 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TavernBtn.onClick.RemoveAllListeners();
         TavernBtn.onClick.AddListener(LoadTavern);
+        DungeonBtn.onClick.RemoveAllListeners();
         DungeonBtn.onClick.AddListener(LoadDungeon);
+        ForestBtn.onClick.RemoveAllListeners();
         ForestBtn.onClick.AddListener(LoadForest);
     }
 
@@ -23,6 +26,11 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void BackToMap()
+    {
+        SceneManager.LoadScene("Map");
     }
 
     private void LoadTavern()
@@ -42,4 +50,6 @@ public class MapManager : MonoBehaviour
         SceneManager.LoadScene("Forest");
         BaseGameManager.levelLoaded?.Invoke();
     }
+    
+    
 }

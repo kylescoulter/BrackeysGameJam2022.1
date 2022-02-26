@@ -328,6 +328,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Phone",
+            "id": "9d603183-cc78-425f-8bb9-8818c9ded087",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Value",
+                    "id": "d8e64ced-dd86-4090-8964-390c9a10d341",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Interact",
+                    "type": "Value",
+                    "id": "1cfc3459-23dd-4bec-8259-45f6c524ff7b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6ec1223a-e5d7-4132-803d-09c7eee850b3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cdd4309b-410c-4568-b57b-517176879ff0",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
