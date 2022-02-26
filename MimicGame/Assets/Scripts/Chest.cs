@@ -20,6 +20,11 @@ namespace UnityTemplateProjects
         [Header("Lock Renderers")]
         [SerializeField] private GameObject lockTrimObject;
         [SerializeField] private MeshRenderer lockBase;
+        
+        [SerializeField] private GameObject mark;
+        [SerializeField] private GameObject markHint;
+
+        private bool markable;
 
         public void ReskinChest(Material chestMat, Material trimMat, Material lockMat, Material lockTrimMat, String ownerStr, bool rune)
         {
@@ -45,6 +50,47 @@ namespace UnityTemplateProjects
             owner = ownerStr;
             hasRune = rune;
         }
+
+        public Boolean ActivateMark()
+        {
+            if (markable)
+            {
+                Debug.Log("Marked chest");
+                mark.SetActive(true);
+            }
+
+            return mark.activeSelf;
+        }
+
+        public Boolean DeactivateMark()
+        {
+            if (markable)
+            {
+                Debug.Log("Marked chest");
+                mark.SetActive(false);
+            }
+            
+            return mark.activeSelf;
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                markHint.SetActive(true);
+                markable = true;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                markHint.SetActive(false);
+                markable = false;
+            }
+        }
+        
         
         
     }

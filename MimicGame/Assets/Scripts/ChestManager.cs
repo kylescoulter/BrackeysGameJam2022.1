@@ -88,7 +88,7 @@ namespace UnityTemplateProjects
                 }
             }
         }
-
+        
         private void FillMaterialLists()
         {
             chestMats.Add(brownChest);
@@ -117,6 +117,8 @@ namespace UnityTemplateProjects
             
             rune = Random.Range(0, 2) == 1;
         }
+
+       
 
         #region ChestLogic
 
