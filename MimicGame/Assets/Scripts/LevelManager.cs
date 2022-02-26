@@ -9,20 +9,25 @@ using UnityEngine.UI;
 
 namespace UnityTemplateProjects
 {
-    public class DungeonManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
     {
         [SerializeField] private Transform chestSpawn;
         [SerializeField] private GameObject itemSpawn;
-        [SerializeField] private GameObject playerSpawn;
+        [SerializeField] private Transform playerSpawn;
         private GameObject player;
         private List<Transform> itemList;
 
 
-        private void Start()
-        {
+        private void Awake()
+        { 
             player = PlayerManager.GetPlayer();
             player.GetComponent<Inputs>().cursorLocked = true;
-            player.transform.position = playerSpawn.transform.position;
+            player.transform.position = playerSpawn.localPosition;
+            player.transform.rotation = playerSpawn.localRotation;
+        }
+
+        private void Start()
+        {
             SpawnChest();
             SpawnItems();
         }
@@ -35,7 +40,14 @@ namespace UnityTemplateProjects
 
         private void SpawnItems()
         {
-            BaseGameManager.chestManager.SpawnOwnerItems(itemSpawn.GetComponentsInChildren<RectTransform>().ToList());
+            var itemSpawnList = itemSpawn.GetComponentsInChildren<Transform>().ToList();
+            itemSpawnList.RemoveAt(0);
+            BaseGameManager.chestManager.SpawnOwnerItems(itemSpawnList);
+            foreach (var spawn in itemSpawnList)
+            {
+                Debug.Log("Spawn name: " + spawn.name);
+            }
+            
         }
     }
 }

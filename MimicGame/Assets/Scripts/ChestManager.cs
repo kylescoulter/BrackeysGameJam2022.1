@@ -64,7 +64,7 @@ namespace UnityTemplateProjects
             return chestObj;
         }
 
-        public void SpawnOwnerItems(List<RectTransform> spawns)
+        public void SpawnOwnerItems(List<Transform> spawns)
         {
             if (chest.owner.Equals("goblin"))
             {
