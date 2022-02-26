@@ -1061,8 +1061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2fc3a73a33410ca646b07e1aa2e1c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chestObj: {fileID: 3281110894430138066, guid: 781d70d2c4b94e4428de037901e5d1c8,
-    type: 3}
   goblinObjects:
   - {fileID: 8492224011529538821, guid: 4d320152aa281bd4b90c658431752127, type: 3}
   - {fileID: 7836665351783252631, guid: 3a3db062fffc95d45920805c5c5498e8, type: 3}

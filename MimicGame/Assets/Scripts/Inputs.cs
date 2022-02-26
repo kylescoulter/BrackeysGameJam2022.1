@@ -111,7 +111,7 @@ namespace UnityTemplateProjects
 		
 		public void ExitInput(bool newExitBookState)
 		{
-			closeBook = newExitBookState;
+			exit = newExitBookState;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID

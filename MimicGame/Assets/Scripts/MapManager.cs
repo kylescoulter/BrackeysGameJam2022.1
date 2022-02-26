@@ -20,6 +20,9 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Screen.lockCursor = false;
+        
         TavernBtn.onClick.RemoveAllListeners();
         TavernBtn.onClick.AddListener(LoadTavern);
         DungeonBtn.onClick.RemoveAllListeners();
@@ -36,11 +39,6 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void BackToMap()
-    {
-        SceneManager.LoadScene("Map");
     }
 
     private void LoadTavern()

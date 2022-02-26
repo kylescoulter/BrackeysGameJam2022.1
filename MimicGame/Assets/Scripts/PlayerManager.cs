@@ -4,6 +4,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace UnityTemplateProjects
 {
@@ -99,14 +100,25 @@ namespace UnityTemplateProjects
                     playerInput.SwitchCurrentActionMap("Phone");
                 }
                 
-                if (inputs.interact && phoneManager.IsPhoneOpen())
+                /*if (inputs.interact && phoneManager.IsPhoneOpen())
                 {
                     Debug.Log("Closing Phone");
                     exitDoor.ToggleHint(true);
-                    phoneManager.ClosePhone();
+                    phoneManager.ClosePhone(true);
                     playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
                     playerInput.SwitchCurrentActionMap("Player");
-                }
+                }*/
+            }
+
+            if (inputs.exit && exitDoor.GetLeavable() && phoneManager.IsPhoneOpen())
+            {
+                playerInput.SwitchCurrentActionMap("Player");
+                Debug.Log("Loading map from phone");
+                phoneManager.ClosePhone(false);
+                DisablePlayer();
+                BaseGameManager.mapLoaded?.Invoke();
+                playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
+                SceneManager.LoadScene("Map");
             }
         }
 
@@ -124,9 +136,9 @@ namespace UnityTemplateProjects
 
         public void DisablePlayer()
         {
+            player.GetComponent<Inputs>().cursorLocked = false;
             player.SetActive(false);
             playerFollowCamera.SetActive(false);
-            
         }
 
         public static GameObject GetPlayer()

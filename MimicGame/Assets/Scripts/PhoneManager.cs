@@ -44,16 +44,25 @@ namespace UnityTemplateProjects
             seq.Insert(5f, hint.DOFade(1, 4f));
         }
 
-        public void ClosePhone()
+        public void ClosePhone(bool animate)
         {
             var seq = DOTween.Sequence();
-
-            seq.InsertCallback(.4f, delegate
+            if (animate)
+            {
+                seq.InsertCallback(.4f, delegate
+                {
+                    isPhoneOpen = false;
+                });
+                seq.Insert(3f, phoneTransform.DOLocalMove(closedPhone, 1f));
+                seq.Insert(4f, hint.DOFade(0, 0f));
+            }
+            else
             {
                 isPhoneOpen = false;
-            });
-            seq.Insert(3f, phoneTransform.DOLocalMove(closedPhone, 1f));
-            seq.Insert(4f, hint.DOFade(0, 0f));
+                seq.Insert(0f, phoneTransform.DOLocalMove(closedPhone, 0f));
+                seq.Insert(0f, hint.DOFade(0, 0f));
+            }
+            
         }
 
         public bool IsPhoneOpen()
