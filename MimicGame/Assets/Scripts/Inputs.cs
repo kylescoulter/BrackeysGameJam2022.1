@@ -3,15 +3,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
-namespace StarterAssets
+namespace UnityTemplateProjects
 {
-	public class StarterAssetsInputs : MonoBehaviour
+	public class Inputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool interact;
+		public bool openBook;
+		public bool closeBook;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -45,6 +48,21 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+		
+		public void OnInteract(InputValue value)
+		{
+			InteractInput(value.isPressed);
+		}
+
+		public void OnOpenBook(InputValue value)
+		{
+			OpenBookInput(value.isPressed);
+		}
+		
+		public void OnCloseBook(InputValue value)
+		{
+			CloseBookInput(value.isPressed);
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -68,6 +86,21 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
+		}
+		
+		public void InteractInput(bool newInteractState)
+		{
+			interact = newInteractState;
+		}
+		
+		public void OpenBookInput(bool newOpenBookState)
+		{
+			openBook = newOpenBookState;
+		}
+		
+		public void CloseBookInput(bool newCloseBookState)
+		{
+			closeBook = newCloseBookState;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID

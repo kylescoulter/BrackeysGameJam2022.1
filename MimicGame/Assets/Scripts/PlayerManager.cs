@@ -2,6 +2,7 @@ using System;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace UnityTemplateProjects
 {
@@ -9,11 +10,14 @@ namespace UnityTemplateProjects
     {
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject mainCamera;
+        private InputAction openBook;
+        private InputAction closeBook;
         
         
         private static GameObject player;
         private static GameObject playerFollowCamera;
-        private StarterAssetsInputs inputs;
+        private Inputs inputs;
+        private PlayerInput playerInput;
         private GameObject book;
         private BookManager bookManager;
         
@@ -21,18 +25,16 @@ namespace UnityTemplateProjects
         private void Awake()
         {
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<StarterAssetsInputs>().cursorLocked = false;
+            player.GetComponent<Inputs>().cursorLocked = false;
             playerFollowCamera = GameObject.FindGameObjectWithTag("PlayerFollowCamera");
             playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow =
                 GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
+
             book = player.GetComponentInChildren<BookManager>().gameObject;
             bookManager = book.GetComponent<BookManager>();
-            DontDestroyOnLoad(player);
-            DontDestroyOnLoad(playerFollowCamera);
-            DontDestroyOnLoad(mainCamera);
             
-            
-            inputs = player.GetComponent<StarterAssetsInputs>();
+            playerInput = player.GetComponent<PlayerInput>();
+            inputs = player.GetComponent<Inputs>();
         }
 
         private void Start()
@@ -40,14 +42,27 @@ namespace UnityTemplateProjects
             BaseGameManager.levelLoaded = EnablePlayer; 
             
             DisablePlayer();
-           
+            DontDestroyOnLoad(player);
+            DontDestroyOnLoad(playerFollowCamera);
+            DontDestroyOnLoad(mainCamera);
         }
 
         private void Update()
         {
-            if (inputs.interact)
+            if (inputs.openBook && !bookManager.IsBookOpen())
             {
                 bookManager.OpenBook();
+                playerInput.SwitchCurrentActionMap("Book");
+                playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = book.transform;
+                Debug.Log("Action Map Is : " + playerInput.currentActionMap);
+            }
+            
+            if (inputs.closeBook && bookManager.IsBookOpen())
+            {
+                playerInput.SwitchCurrentActionMap("Player");
+                bookManager.CloseBook();
+                playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
+                Debug.Log("Action Map Is : " + playerInput.currentActionMap);
             }
         }
 

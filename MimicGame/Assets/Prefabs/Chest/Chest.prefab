@@ -570,7 +570,7 @@ MonoBehaviour:
   chestMaterial: {fileID: 2100000, guid: f8a8ab06dc3f9ed46893114e70492b58, type: 2}
   lockMaterial: {fileID: 2100000, guid: bdbaa4e8126733342a3f574ff670795e, type: 2}
   owner: elf
-  hasRune: 0
+  hasRune: 1
   isMimic: 1
   chestObject: {fileID: 561501174828149635}
   trimObject: {fileID: 7558450510239838929}

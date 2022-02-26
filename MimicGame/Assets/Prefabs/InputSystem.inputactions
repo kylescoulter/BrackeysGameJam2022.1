@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "InputSystem",
     "maps": [
         {
             "name": "Player",
@@ -51,22 +51,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PrevPage",
-                    "type": "Button",
-                    "id": "9e6722b2-6c74-40ae-8b83-eb071b416abc",
+                    "name": "OpenBook",
+                    "type": "Value",
+                    "id": "87e813bf-83ed-4cfb-a7ba-42e35dc7377f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "NextPage",
-                    "type": "Button",
-                    "id": "cecae273-54f7-476a-abc1-c2a3b6261718",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -259,8 +250,54 @@
                 },
                 {
                     "name": "",
-                    "id": "35e71813-b934-4875-b34a-5888e563e890",
-                    "path": "<Keyboard>/q",
+                    "id": "b71dc424-f1c4-414c-b629-b23da82fce0b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenBook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Book",
+            "id": "b78c4e11-db3f-4aef-b527-e10039d50e07",
+            "actions": [
+                {
+                    "name": "CloseBook",
+                    "type": "Value",
+                    "id": "0862045d-4b0a-422e-bcc9-2d1bdcc46eb2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PrevPage",
+                    "type": "Value",
+                    "id": "afa3ffc1-7aec-4c5c-b6cd-dac2f2973f1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "NextPage",
+                    "type": "Value",
+                    "id": "d953101e-3af0-44eb-aafe-cf92e36f6613",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ba22871d-3e95-4ed7-a190-9b375e41df7e",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -270,12 +307,23 @@
                 },
                 {
                     "name": "",
-                    "id": "63aeb6b6-e932-49e1-8188-6ce56b9aa675",
-                    "path": "<Keyboard>/e",
+                    "id": "634ef0c0-7211-4cb5-b1e1-faca370e3818",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "NextPage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad18b45e-ea97-4b94-914f-c598404d43b8",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseBook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
