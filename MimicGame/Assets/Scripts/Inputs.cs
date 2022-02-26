@@ -15,6 +15,7 @@ namespace UnityTemplateProjects
 		public bool interact;
 		public bool openBook;
 		public bool closeBook;
+		public bool exit;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -63,6 +64,11 @@ namespace UnityTemplateProjects
 		{
 			CloseBookInput(value.isPressed);
 		}
+		
+		public void OnExit(InputValue value)
+		{
+			ExitInput(value.isPressed);
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -101,6 +107,11 @@ namespace UnityTemplateProjects
 		public void CloseBookInput(bool newCloseBookState)
 		{
 			closeBook = newCloseBookState;
+		}
+		
+		public void ExitInput(bool newExitBookState)
+		{
+			exit = newExitBookState;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID

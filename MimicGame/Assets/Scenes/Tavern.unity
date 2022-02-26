@@ -130,6 +130,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 554306729092713126, guid: d87833b0bccdf8a4e9133d724a1afb1b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 554306729092713126, guid: d87833b0bccdf8a4e9133d724a1afb1b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 554306729092713126, guid: d87833b0bccdf8a4e9133d724a1afb1b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.79
+      objectReference: {fileID: 0}
     - target: {fileID: 4993507612829921740, guid: d87833b0bccdf8a4e9133d724a1afb1b,
         type: 3}
       propertyPath: m_RootOrder
@@ -138,7 +153,7 @@ PrefabInstance:
     - target: {fileID: 4993507612829921740, guid: d87833b0bccdf8a4e9133d724a1afb1b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 4993507612829921740, guid: d87833b0bccdf8a4e9133d724a1afb1b,
         type: 3}
@@ -190,6 +205,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TavernLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 8618331596485598052, guid: d87833b0bccdf8a4e9133d724a1afb1b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618331596485598052, guid: d87833b0bccdf8a4e9133d724a1afb1b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.95
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d87833b0bccdf8a4e9133d724a1afb1b, type: 3}
 --- !u!4 &723608506 stripped
@@ -207,6 +232,12 @@ GameObject:
 --- !u!4 &723608508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 929236299937709461, guid: d87833b0bccdf8a4e9133d724a1afb1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 723608505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &723608509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8718301846339966374, guid: d87833b0bccdf8a4e9133d724a1afb1b,
     type: 3}
   m_PrefabInstance: {fileID: 723608505}
   m_PrefabAsset: {fileID: 0}
@@ -242,6 +273,9 @@ MonoBehaviour:
   chestSpawn: {fileID: 723608508}
   itemSpawn: {fileID: 723608507}
   playerSpawn: {fileID: 723608506}
+  exitDoor: {fileID: 723608509}
+  chestObj: {fileID: 3281110894430138066, guid: 781d70d2c4b94e4428de037901e5d1c8,
+    type: 3}
 --- !u!4 &1441192320
 Transform:
   m_ObjectHideFlags: 0
@@ -250,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441192318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.523424, y: 23.875906, z: -40.93252}
+  m_LocalPosition: {x: 21.223423, y: 23.875906, z: -40.93252}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -343,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799599766}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -1.3000002, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

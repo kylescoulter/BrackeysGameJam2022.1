@@ -4,6 +4,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace UnityTemplateProjects
 {
@@ -11,18 +12,19 @@ namespace UnityTemplateProjects
     {
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject mainCamera;
-        private InputAction openBook;
-        private InputAction closeBook;
-        
-        
+
+
         private static GameObject player;
         private static GameObject playerFollowCamera;
         private Inputs inputs;
         private PlayerInput playerInput;
         private GameObject book;
+        private GameObject phone;
         private BookManager bookManager;
+        private PhoneManager phoneManager;
         private Chest chest;
         private Boolean chestMarked;
+        private ExitDoor exitDoor;
         
 
         private void Awake()
@@ -34,7 +36,10 @@ namespace UnityTemplateProjects
                 GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
 
             book = player.GetComponentInChildren<BookManager>().gameObject;
-            bookManager = book.GetComponent<BookManager>();
+            bookManager = book.GetComponent<BookManager>(); 
+            
+            phone = player.GetComponentInChildren<PhoneManager>().gameObject;
+            phoneManager = phone.GetComponent<PhoneManager>();
             
             playerInput = player.GetComponent<PlayerInput>();
             inputs = player.GetComponent<Inputs>();
@@ -44,7 +49,7 @@ namespace UnityTemplateProjects
 
         private void Start()
         {
-            BaseGameManager.levelLoaded += EnablePlayer;
+            BaseGameManager.levelLoaded = delegate { StartCoroutine(EnablePlayer()); };
             
             
             DisablePlayer();
@@ -71,32 +76,67 @@ namespace UnityTemplateProjects
                 Debug.Log("Action Map Is : " + playerInput.currentActionMap);
             }
 
-            if (inputs.interact && !chestMarked)
+            if (chest != null)
             {
-                Debug.Log("Attempting to mark");
-                chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
-                chestMarked = chest.ActivateMark();
+                if (inputs.interact && !chestMarked)
+                {
+                    chestMarked = chest.ActivateMark();
+                }
             }
+            
 
             /*if (inputs.interact && chestMarked)
             {
                 Debug.Log("Removing Mark");
                 chestMarked = chest.DeactivateMark();
             }*/
-            
-            
+            if (exitDoor != null)
+            {
+                if (inputs.interact && exitDoor.GetLeavable() && !phoneManager.IsPhoneOpen())
+                {
+                    exitDoor.ToggleHint(false);
+                    phoneManager.OpenPhone();
+                    playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = GameObject.FindGameObjectWithTag("PhoneTarget").transform;
+                    playerInput.SwitchCurrentActionMap("Phone");
+                }
+                
+                /*if (inputs.interact && phoneManager.IsPhoneOpen())
+                {
+                    Debug.Log("Closing Phone");
+                    exitDoor.ToggleHint(true);
+                    phoneManager.ClosePhone(true);
+                    playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
+                    playerInput.SwitchCurrentActionMap("Player");
+                }*/
+            }
+
+            if (inputs.exit && exitDoor.GetLeavable() && phoneManager.IsPhoneOpen())
+            {
+                playerInput.SwitchCurrentActionMap("Player");
+                Debug.Log("Loading map from phone");
+                phoneManager.ClosePhone(false);
+                DisablePlayer();
+                BaseGameManager.mapLoaded?.Invoke();
+                playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
+                SceneManager.LoadScene("Map");
+            }
         }
 
-        public void EnablePlayer()
+        public IEnumerator EnablePlayer()
         {
             player.SetActive(true); 
             playerFollowCamera.SetActive(true);
-            //chest = BaseGameManager.chestManager.GetChest().GetComponent<Chest>();
-            //Debug.Log("Chest color " + chest.chestMaterial.color);
+            
+            yield return new WaitForSeconds(5);
+            
+            chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
+            exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").GetComponent<ExitDoor>();
+            
         }
 
         public void DisablePlayer()
         {
+            player.GetComponent<Inputs>().cursorLocked = false;
             player.SetActive(false);
             playerFollowCamera.SetActive(false);
         }

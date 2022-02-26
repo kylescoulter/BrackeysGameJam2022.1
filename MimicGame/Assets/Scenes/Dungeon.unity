@@ -175,6 +175,9 @@ MonoBehaviour:
   chestSpawn: {fileID: 5545004658454321598}
   itemSpawn: {fileID: 15836579}
   playerSpawn: {fileID: 1345465830428098807}
+  exitDoor: {fileID: 4386453352965916111}
+  chestObj: {fileID: 3281110894430138066, guid: 781d70d2c4b94e4428de037901e5d1c8,
+    type: 3}
 --- !u!1 &1460615251
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +346,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97e05f17a89aa164b9d975a07c38bf57, type: 3}
+--- !u!1 &4386453352965916111 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7257911953064148083, guid: 97e05f17a89aa164b9d975a07c38bf57,
+    type: 3}
+  m_PrefabInstance: {fileID: 4386453352965916110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5545004658454321598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8082835767142161520, guid: 97e05f17a89aa164b9d975a07c38bf57,

@@ -344,7 +344,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5a7b130526d5fc4aa81c7e4d7a0f22d, type: 2}
+  - {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -890,11 +890,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trimMaterial: {fileID: 2100000, guid: dd6f60eec38a250448baee9d9466ddfd, type: 2}
-  chestMaterial: {fileID: 2100000, guid: b5a7b130526d5fc4aa81c7e4d7a0f22d, type: 2}
-  lockMaterial: {fileID: 2100000, guid: bdbaa4e8126733342a3f574ff670795e, type: 2}
+  chestMaterial: {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
+  lockMaterial: {fileID: 2100000, guid: 7b47717edc7d6a64f994f92659af067b, type: 2}
   owner: goblin
-  hasRune: 0
-  isMimic: 0
+  hasRune: 1
+  isMimic: 1
   chestObject: {fileID: 561501174828149635}
   trimObject: {fileID: 7558450510239838929}
   lockTrimObject: {fileID: 657153885755862402}
@@ -1938,7 +1938,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5a7b130526d5fc4aa81c7e4d7a0f22d, type: 2}
+  - {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2522,7 +2522,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bdbaa4e8126733342a3f574ff670795e, type: 2}
+      objectReference: {fileID: 2100000, guid: 7b47717edc7d6a64f994f92659af067b, type: 2}
     - target: {fileID: 3578715342217725280, guid: 34029072556f9e54e87971743b294217,
         type: 3}
       propertyPath: m_Name
@@ -2602,27 +2602,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a3fa473dc4123734f8af397b17db32c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 711a3afce5680cd4fa3b2e49149810a5, type: 2}
     - target: {fileID: 5415770268519207209, guid: 34029072556f9e54e87971743b294217,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a3fa473dc4123734f8af397b17db32c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 711a3afce5680cd4fa3b2e49149810a5, type: 2}
     - target: {fileID: 5548805989492574284, guid: 34029072556f9e54e87971743b294217,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a3fa473dc4123734f8af397b17db32c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 711a3afce5680cd4fa3b2e49149810a5, type: 2}
     - target: {fileID: 7182649003381112467, guid: 34029072556f9e54e87971743b294217,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a3fa473dc4123734f8af397b17db32c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 711a3afce5680cd4fa3b2e49149810a5, type: 2}
     - target: {fileID: 7694333966961237323, guid: 34029072556f9e54e87971743b294217,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a3fa473dc4123734f8af397b17db32c4, type: 2}
+      objectReference: {fileID: 2100000, guid: 711a3afce5680cd4fa3b2e49149810a5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34029072556f9e54e87971743b294217, type: 3}
 --- !u!1 &7345741823559692866 stripped

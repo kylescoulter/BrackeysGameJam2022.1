@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - PlayerFollowCamera
+  - Chest
+  - ExitDoor
+  - PhoneTarget
   layers:
   - Default
   - TransparentFX

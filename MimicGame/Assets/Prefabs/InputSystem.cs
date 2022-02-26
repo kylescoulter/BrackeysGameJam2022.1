@@ -350,6 +350,54 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Phone"",
+            ""id"": ""9d603183-cc78-425f-8bb9-8818c9ded087"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Value"",
+                    ""id"": ""d8e64ced-dd86-4090-8964-390c9a10d341"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Value"",
+                    ""id"": ""1cfc3459-23dd-4bec-8259-45f6c524ff7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6ec1223a-e5d7-4132-803d-09c7eee850b3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cdd4309b-410c-4568-b57b-517176879ff0"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -415,6 +463,10 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Book_CloseBook = m_Book.FindAction("CloseBook", throwIfNotFound: true);
         m_Book_PrevPage = m_Book.FindAction("PrevPage", throwIfNotFound: true);
         m_Book_NextPage = m_Book.FindAction("NextPage", throwIfNotFound: true);
+        // Phone
+        m_Phone = asset.FindActionMap("Phone", throwIfNotFound: true);
+        m_Phone_Exit = m_Phone.FindAction("Exit", throwIfNotFound: true);
+        m_Phone_Interact = m_Phone.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -592,6 +644,47 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         }
     }
     public BookActions @Book => new BookActions(this);
+
+    // Phone
+    private readonly InputActionMap m_Phone;
+    private IPhoneActions m_PhoneActionsCallbackInterface;
+    private readonly InputAction m_Phone_Exit;
+    private readonly InputAction m_Phone_Interact;
+    public struct PhoneActions
+    {
+        private @InputSystem m_Wrapper;
+        public PhoneActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Exit => m_Wrapper.m_Phone_Exit;
+        public InputAction @Interact => m_Wrapper.m_Phone_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Phone; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PhoneActions set) { return set.Get(); }
+        public void SetCallbacks(IPhoneActions instance)
+        {
+            if (m_Wrapper.m_PhoneActionsCallbackInterface != null)
+            {
+                @Exit.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnExit;
+                @Interact.started -= m_Wrapper.m_PhoneActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PhoneActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PhoneActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_PhoneActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public PhoneActions @Phone => new PhoneActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -642,5 +735,10 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnCloseBook(InputAction.CallbackContext context);
         void OnPrevPage(InputAction.CallbackContext context);
         void OnNextPage(InputAction.CallbackContext context);
+    }
+    public interface IPhoneActions
+    {
+        void OnExit(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
