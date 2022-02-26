@@ -21,8 +21,8 @@ namespace UnityTemplateProjects
         private void Start()
         {
             player = PlayerManager.GetPlayer();
+            player.GetComponent<Inputs>().cursorLocked = true;
             player.transform.position = playerSpawn.transform.position;
-            player.GetComponent<StarterAssetsInputs>().cursorLocked = true;
             SpawnChest();
             SpawnItems();
         }
