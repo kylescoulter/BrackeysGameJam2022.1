@@ -78,6 +78,21 @@ namespace UnityTemplateProjects
             
             return mark.activeSelf;
         }
+
+        public void SetChestPayment(int val)
+        {
+            payment = val;
+        } 
+        
+        public int GetChestPayment()
+        {
+            return payment;
+        }
+        
+        public int GetChestPrize()
+        {
+            return prize;
+        }
         
         private void OnTriggerEnter(Collider other)
         {
@@ -96,8 +111,5 @@ namespace UnityTemplateProjects
                 markable = false;
             }
         }
-        
-        
-        
     }
 }

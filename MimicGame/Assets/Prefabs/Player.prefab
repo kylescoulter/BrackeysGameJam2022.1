@@ -527,6 +527,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1731444349644761868, guid: b3c0e455ed1bfde4197cef98a85daaca,
         type: 3}
+      propertyPath: reward
+      value: 
+      objectReference: {fileID: 2378003210190681000}
+    - target: {fileID: 1731444349644761868, guid: b3c0e455ed1bfde4197cef98a85daaca,
+        type: 3}
+      propertyPath: payment
+      value: 
+      objectReference: {fileID: 6166375945434477064}
+    - target: {fileID: 1731444349644761868, guid: b3c0e455ed1bfde4197cef98a85daaca,
+        type: 3}
       propertyPath: openPhoneLocation
       value: 
       objectReference: {fileID: 4662872810599615656}
@@ -663,6 +673,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2731460498349768618}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6166375945434477064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8105149579760274850, guid: b3c0e455ed1bfde4197cef98a85daaca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2731460498349768618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2378003210190681000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 353609038212189186, guid: b3c0e455ed1bfde4197cef98a85daaca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2731460498349768618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6243008029558911541
 PrefabInstance:
   m_ObjectHideFlags: 0

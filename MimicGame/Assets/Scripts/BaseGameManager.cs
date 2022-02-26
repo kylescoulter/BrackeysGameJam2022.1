@@ -36,7 +36,7 @@ namespace UnityTemplateProjects
             });
             DontDestroyOnLoad(this);
             chestManager = GetComponent<ChestManager>();
-            time.text = DateTime.Now.ToString("HH:mm tt");
+            time.text = DateTime.Now.ToString("hh:mm tt");
         }
 
         private void GenerateChestPayments()

@@ -7,9 +7,6 @@ namespace UnityTemplateProjects
 {
     public class ChestManager : MonoBehaviour
     {
-        [Header("Chest Objects")]
-        [SerializeField] private GameObject chestObj;
-
         [Header("Owner Objects")] 
         [SerializeField] private List<GameObject> goblinObjects;
         [SerializeField] private List<GameObject> ogreObjects;
@@ -44,24 +41,19 @@ namespace UnityTemplateProjects
         private String owner;
         private Boolean rune;
         private Chest chest;
-        
 
-        private void Start()
+        public void GenerateChest(GameObject chestObj)
         {
+            chest = chestObj.GetComponent<Chest>();
             FillMaterialLists();
             RandomizeChest();
-            chest = chestObj.GetComponent<Chest>();
             CheckMimic();
             if (chest.isMimic)
             {
                 lockTrim = mimicChest;
             }
-        }
-
-        public GameObject GenerateChest()
-        {
-            chestObj.GetComponent<Chest>().ReskinChest(chestMaterial, trimMaterial, lockBaseMaterial, lockTrim, owner, rune);
-            return chestObj;
+            
+            chest.ReskinChest(chestMaterial, trimMaterial, lockBaseMaterial, lockTrim, owner, rune);
         }
 
         public void SpawnOwnerItems(List<Transform> spawns)
@@ -118,7 +110,6 @@ namespace UnityTemplateProjects
             rune = Random.Range(0, 2) == 1;
         }
 
-       
 
         #region ChestLogic
 
@@ -568,7 +559,6 @@ namespace UnityTemplateProjects
             }
         }
         #endregion
-        
         
     }
 }

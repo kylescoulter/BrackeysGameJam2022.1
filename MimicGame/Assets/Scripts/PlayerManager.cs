@@ -108,8 +108,6 @@ namespace UnityTemplateProjects
                     playerInput.SwitchCurrentActionMap("Player");
                 }
             }
-            
-            
         }
 
         public IEnumerator EnablePlayer()
@@ -121,6 +119,7 @@ namespace UnityTemplateProjects
             
             chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
             exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").GetComponent<ExitDoor>();
+            
         }
 
         public void DisablePlayer()

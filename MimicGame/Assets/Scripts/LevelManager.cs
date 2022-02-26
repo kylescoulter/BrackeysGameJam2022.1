@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cinemachine;
-using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace UnityTemplateProjects
 {
@@ -15,6 +11,10 @@ namespace UnityTemplateProjects
         [SerializeField] private GameObject itemSpawn;
         [SerializeField] private Transform playerSpawn;
         [SerializeField] private GameObject exitDoor;
+        
+        [Header("Chest Objects")]
+        [SerializeField] private GameObject chestObj;
+        
         private GameObject player;
         private List<Transform> itemList;
 
@@ -35,8 +35,20 @@ namespace UnityTemplateProjects
 
         private void SpawnChest()
         {
-            var chest = BaseGameManager.chestManager.GenerateChest();
-            Instantiate(chest, chestSpawn.position, chestSpawn.rotation);
+            var chest = Instantiate(chestObj, chestSpawn.position, chestSpawn.rotation);
+            BaseGameManager.chestManager.GenerateChest(chest);
+            if (SceneManager.GetActiveScene().name == "Forest")
+            {
+                chest.GetComponent<Chest>().SetChestPayment(BaseGameManager.GetForestPayment());
+            } 
+            else if (SceneManager.GetActiveScene().name == "Tavern")
+            {
+                chest.GetComponent<Chest>().SetChestPayment(BaseGameManager.GetTavernPayment());
+            }
+            else if (SceneManager.GetActiveScene().name == "Dungeon")
+            {
+                chest.GetComponent<Chest>().SetChestPayment(BaseGameManager.GetDungeonPayment());
+            }
         }
 
         private void SpawnItems()
@@ -48,7 +60,6 @@ namespace UnityTemplateProjects
             {
                 Debug.Log("Spawn name: " + spawn.name);
             }
-            
         }
     }
 }

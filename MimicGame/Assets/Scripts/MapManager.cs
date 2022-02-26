@@ -67,6 +67,4 @@ public class MapManager : MonoBehaviour
         dungeonPayment.text = BaseGameManager.GetDungeonPayment() + "p";
         forestPayment.text = BaseGameManager.GetForestPayment() + "p";
     }
-    
-    
 }
