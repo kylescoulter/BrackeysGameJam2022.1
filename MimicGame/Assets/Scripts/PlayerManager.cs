@@ -28,6 +28,8 @@ namespace UnityTemplateProjects
 
         private static int day;
         private static int money;
+
+        private bool phoneHasBeenOpened;
         
         private void Awake()
         {
@@ -94,8 +96,9 @@ namespace UnityTemplateProjects
             }*/
             if (exitDoor != null)
             {
-                if (inputs.interact && exitDoor.GetLeavable() && !phoneManager.IsPhoneOpen())
+                if (inputs.interact && exitDoor.GetLeavable() && !phoneManager.IsPhoneOpen() && !phoneHasBeenOpened)
                 {
+                    phoneHasBeenOpened = true;
                     exitDoor.ToggleHint(false);
                     phoneManager.OpenPhone();
                     playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = GameObject.FindGameObjectWithTag("PhoneTarget").transform;
@@ -105,7 +108,12 @@ namespace UnityTemplateProjects
 
             if (inputs.exit && exitDoor.GetLeavable() && phoneManager.IsPhoneOpen())
             {
+                if (chestMarked)
+                {
+                    chestMarked = false;
+                }
                 playerInput.SwitchCurrentActionMap("Player");
+                phoneHasBeenOpened = false;
                 Debug.Log("Loading map from phone");
                 phoneManager.ClosePhone(false);
                 DisablePlayer();
