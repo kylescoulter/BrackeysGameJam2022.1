@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Cinemachine;
 using StarterAssets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ namespace UnityTemplateProjects
     {
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject mainCamera;
+        
 
 
         private static GameObject player;
@@ -28,6 +30,7 @@ namespace UnityTemplateProjects
 
         private static int day;
         private static int money;
+        private bool turningPage;
 
         private bool phoneHasBeenOpened;
         
@@ -127,9 +130,46 @@ namespace UnityTemplateProjects
                 {
                     SceneManager.LoadScene("End");
                 }
-                
                 day++;
             }
+
+            if (inputs.nextPage)
+            {
+                
+                if (!turningPage)
+                {
+                    Debug.Log("Attempting next page");
+                    StartCoroutine(TurnNextPage());
+                }
+                
+            }
+            
+            if (inputs.prevPage)
+            {
+                
+                if (!turningPage)
+                {
+                    Debug.Log("Attempting previous page");
+                    StartCoroutine(TurnPrevPage());
+                }
+                
+            }
+        }
+
+        public IEnumerator TurnNextPage()
+        {
+            turningPage = true;
+            bookManager.NextPage();
+            yield return new WaitForSeconds(.25f);
+            turningPage = false;
+        }
+        
+        public IEnumerator TurnPrevPage()
+        {
+            turningPage = true;
+            bookManager.PrevPage();
+            yield return new WaitForSeconds(.25f);
+            turningPage = false;
         }
 
         public IEnumerator EnablePlayer()
