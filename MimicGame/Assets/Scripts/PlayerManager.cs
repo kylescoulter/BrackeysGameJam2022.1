@@ -119,7 +119,15 @@ namespace UnityTemplateProjects
                 DisablePlayer();
                 BaseGameManager.mapLoaded?.Invoke();
                 playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
-                SceneManager.LoadScene("Map");
+                if (day > 1)
+                {
+                    SceneManager.LoadScene("Map");
+                }
+                else
+                {
+                    SceneManager.LoadScene("End");
+                }
+                
                 day++;
             }
         }
