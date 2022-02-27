@@ -25,6 +25,7 @@ namespace UnityTemplateProjects
         private Boolean isBookOpen;
         private Vector3 openBook;
         private Vector3 closedBook;
+        private bool readyToOpen;
         
         
         private void Start()
@@ -32,14 +33,18 @@ namespace UnityTemplateProjects
             openBook = openBookLocation.transform.localPosition;
             closedBook = closedBookLocation.transform.localPosition;
             var seq = DOTween.Sequence();
-            
+
             seq.InsertCallback(0f, delegate { bookHint.SetActive(true); });
-            seq.InsertCallback(3f, delegate { bookHint.SetActive(false); });
+            seq.InsertCallback(3f, delegate
+            {
+                bookHint.SetActive(false);
+                readyToOpen = true;
+            });
             
         }
 
         public void OpenBook()
-        {
+        { 
             var seq = DOTween.Sequence();
             seq.Insert(0f, bookTransform.DOLocalMove(openBook, 1f));
             seq.InsertCallback(0f, delegate
@@ -166,5 +171,7 @@ namespace UnityTemplateProjects
         {
             return isBookOpen;
         }
+
+        public bool ReadyToOpen => readyToOpen;
     }
 }

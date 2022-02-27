@@ -70,10 +70,14 @@ namespace UnityTemplateProjects
         {
             if (inputs.openBook && !bookManager.IsBookOpen())
             {
-                bookManager.OpenBook();
-                playerInput.SwitchCurrentActionMap("Book");
-                playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = book.transform;
-                Debug.Log("Action Map Is : " + playerInput.currentActionMap);
+                if (bookManager.ReadyToOpen)
+                {
+                    bookManager.OpenBook();
+                    playerInput.SwitchCurrentActionMap("Book");
+                    playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = book.transform;
+                    Debug.Log("Action Map Is : " + playerInput.currentActionMap);
+                }
+              
             }
             
             if (inputs.closeBook && bookManager.IsBookOpen())
@@ -122,7 +126,7 @@ namespace UnityTemplateProjects
                 DisablePlayer();
                 BaseGameManager.mapLoaded?.Invoke();
                 playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
-                if (day > 1)
+                if (day < 14)
                 {
                     SceneManager.LoadScene("Map");
                 }
@@ -176,6 +180,7 @@ namespace UnityTemplateProjects
         {
             player.SetActive(true); 
             playerFollowCamera.SetActive(true);
+            player.GetComponent<Inputs>().cursorLocked = false;
             
             yield return new WaitForSeconds(5);
             

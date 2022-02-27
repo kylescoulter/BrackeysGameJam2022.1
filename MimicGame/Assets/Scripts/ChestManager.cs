@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -69,21 +68,21 @@ namespace UnityTemplateProjects
             {
                 foreach (var obj in goblinObjects)
                 {
-                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].localPosition, Quaternion.identity);
+                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
                 }
             }
             else if (chest.owner.Equals("ogre")) 
             {
                 foreach (var obj in ogreObjects)
                 {
-                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].localPosition, Quaternion.identity);
+                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
                 }
             }
             else if (chest.owner.Equals("elf")) 
             {
                 foreach (var obj in elfObjects)
                 {
-                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].localPosition, Quaternion.identity);
+                    Instantiate(obj, spawns[Random.Range(0, spawns.Count)].position, Quaternion.identity);
                 }
             }
         }
