@@ -60,7 +60,5 @@ namespace UnityTemplateProjects
         {
             return forestPayment;
         }
-        
-        
     }
 }
