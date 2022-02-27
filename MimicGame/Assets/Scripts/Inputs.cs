@@ -15,6 +15,8 @@ namespace UnityTemplateProjects
 		public bool interact;
 		public bool openBook;
 		public bool closeBook;
+		public bool nextPage;
+		public bool prevPage;
 		public bool exit;
 
 		[Header("Movement Settings")]
@@ -69,6 +71,16 @@ namespace UnityTemplateProjects
 		{
 			ExitInput(value.isPressed);
 		}
+		
+		public void OnNextPage(InputValue value)
+		{
+			NextPageInput(value.isPressed);
+		}
+		
+		public void OnPrevPage(InputValue value)
+		{
+			PrevPageInput(value.isPressed);
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -112,6 +124,16 @@ namespace UnityTemplateProjects
 		public void ExitInput(bool newExitBookState)
 		{
 			exit = newExitBookState;
+		}
+		
+		public void NextPageInput(bool newNextPageState)
+		{
+			nextPage = newNextPageState;
+		}
+		
+		public void PrevPageInput(bool newPrevPageState)
+		{
+			prevPage = newPrevPageState;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID
