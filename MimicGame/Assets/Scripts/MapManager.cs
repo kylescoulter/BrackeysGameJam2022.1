@@ -69,9 +69,9 @@ public class MapManager : MonoBehaviour
 
     private void SetPayments()
     {
-        tavernPayment.text = BaseGameManager.GetTavernPayment() + "p";
-        dungeonPayment.text = BaseGameManager.GetDungeonPayment() + "p";
-        forestPayment.text = BaseGameManager.GetForestPayment() + "p";
+        tavernPayment.text = "Reward: " + BaseGameManager.GetTavernPayment() + "p";
+        dungeonPayment.text = "Reward: " + BaseGameManager.GetDungeonPayment() + "p";
+        forestPayment.text = "Reward: " + BaseGameManager.GetForestPayment() + "p";
     }
 
     private void SetPlayerValues()

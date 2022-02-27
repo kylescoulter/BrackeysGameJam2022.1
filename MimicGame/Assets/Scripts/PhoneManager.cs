@@ -14,6 +14,7 @@ namespace UnityTemplateProjects
         [SerializeField] private TextMeshPro payment;
         [SerializeField] private TextMeshPro reward;
         [SerializeField] private TextMeshPro total;
+        [SerializeField] private TextMeshPro mimic;
         [SerializeField] private TextMeshPro hint;
 
         private Boolean isPhoneOpen;
@@ -122,7 +123,8 @@ namespace UnityTemplateProjects
             }
             payment.text = "Payment: " + chest.GetChestPayment() + "p";
             reward.text = "Chest Reward: " + chest.GetChestPrize() + "p";
-            total.text = "Total: " + totalAmount + "p";
+            mimic.text = chest.isMimic ? "Mimic!" : "Normal Chest";
+            total.text = "Total Earned: " + totalAmount + "p";
             PlayerManager.AddMoney(totalAmount);
         }
 
