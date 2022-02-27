@@ -544,7 +544,7 @@ namespace UnityTemplateProjects
                         }
                         else if (chest.owner.Equals("elf"))
                         {
-                            chest.isMimic = false;
+                            chest.isMimic = true;
                         }
                     }
                     else if (chest.lockMaterial == magicLock)
