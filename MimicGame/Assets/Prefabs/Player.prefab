@@ -91,8 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d9440cc2904ee9b656abeae939d9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 6
-  SprintSpeed: 8
+  MoveSpeed: 10
+  SprintSpeed: 20
   RotationSpeed: 1
   SpeedChangeRate: 10
   JumpHeight: 10
@@ -450,7 +450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1, y: 1.67}
+  m_AnchoredPosition: {x: 0.1, y: 1.343}
   m_SizeDelta: {x: 2.5117, y: 0.358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3123891409607274808
@@ -1336,7 +1336,7 @@ PrefabInstance:
     - target: {fileID: 5327674555225154460, guid: 58d8bd92df53ef04dbcf5d98f0d60bd5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.011
+      value: 0.036
       objectReference: {fileID: 0}
     - target: {fileID: 5438685126027035383, guid: 58d8bd92df53ef04dbcf5d98f0d60bd5,
         type: 3}
@@ -1481,7 +1481,7 @@ PrefabInstance:
     - target: {fileID: 9198195298337657562, guid: 58d8bd92df53ef04dbcf5d98f0d60bd5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.001
+      value: -0.038
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d8bd92df53ef04dbcf5d98f0d60bd5, type: 3}
