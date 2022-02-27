@@ -28,9 +28,7 @@ namespace UnityTemplateProjects
 
         private static int day;
         private static int money;
-
-
-
+        
         private void Awake()
         {
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
@@ -89,7 +87,6 @@ namespace UnityTemplateProjects
                 }
             }
             
-
             /*if (inputs.interact && chestMarked)
             {
                 Debug.Log("Removing Mark");
@@ -104,15 +101,6 @@ namespace UnityTemplateProjects
                     playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = GameObject.FindGameObjectWithTag("PhoneTarget").transform;
                     playerInput.SwitchCurrentActionMap("Phone");
                 }
-                
-                /*if (inputs.interact && phoneManager.IsPhoneOpen())
-                {
-                    Debug.Log("Closing Phone");
-                    exitDoor.ToggleHint(true);
-                    phoneManager.ClosePhone(true);
-                    playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
-                    playerInput.SwitchCurrentActionMap("Player");
-                }*/
             }
 
             if (inputs.exit && exitDoor.GetLeavable() && phoneManager.IsPhoneOpen())
@@ -154,6 +142,7 @@ namespace UnityTemplateProjects
 
         public static void AddMoney(int moneyIn)
         {
+            Debug.Log("Adding money to player");
             money += moneyIn;
         }
 

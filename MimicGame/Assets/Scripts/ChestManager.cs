@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -42,18 +43,24 @@ namespace UnityTemplateProjects
         private Boolean rune;
         private Chest chest;
 
+        /*private void Update()
+        {
+            if (chest == null)
+            {
+                chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
+            }
+        }*/
+
         public void GenerateChest(GameObject chestObj)
         {
-            chest = chestObj.GetComponent<Chest>();
+            //chest = chestObj.GetComponent<Chest>();
+            chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
+            
             FillMaterialLists();
             RandomizeChest();
-            CheckMimic();
-            if (chest.isMimic)
-            {
-                lockTrim = mimicChest;
-            }
             
             chest.ReskinChest(chestMaterial, trimMaterial, lockBaseMaterial, lockTrim, owner, rune);
+            CheckMimic();
         }
 
         public void SpawnOwnerItems(List<Transform> spawns)
@@ -107,7 +114,7 @@ namespace UnityTemplateProjects
             lockBaseMaterial = lockMats[Random.Range(0, lockMats.Count)];
             owner = owners[Random.Range(0, owners.Count)];
             
-            rune = Random.Range(0, 2) == 1;
+            //rune = Random.Range(0, 2) == 1;
         }
 
 

@@ -893,8 +893,8 @@ MonoBehaviour:
   chestMaterial: {fileID: 2100000, guid: f6075910e5e131a419015a03d57a93bd, type: 2}
   lockMaterial: {fileID: 2100000, guid: 7b47717edc7d6a64f994f92659af067b, type: 2}
   owner: goblin
-  hasRune: 1
-  isMimic: 1
+  hasRune: 0
+  isMimic: 0
   chestObject: {fileID: 561501174828149635}
   trimObject: {fileID: 7558450510239838929}
   lockTrimObject: {fileID: 657153885755862402}
