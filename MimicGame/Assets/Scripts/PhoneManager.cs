@@ -13,6 +13,7 @@ namespace UnityTemplateProjects
         [SerializeField] private Transform closedPhoneLocation;
         [SerializeField] private TextMeshPro payment;
         [SerializeField] private TextMeshPro reward;
+        [SerializeField] private TextMeshPro total;
         [SerializeField] private TextMeshPro hint;
 
         private Boolean isPhoneOpen;
@@ -21,18 +22,12 @@ namespace UnityTemplateProjects
 
         private GameObject chestObj;
         private Chest chest;
-
-        private void Awake()
-        {
-            /*BaseGameManager.levelLoaded += SetPaymentAndReward;*/
-        }
+        private bool passed;
 
         private void Start()
         {
-           
             openPhone = openPhoneLocation.transform.localPosition;
             closedPhone = closedPhoneLocation.transform.localPosition;
-            SetPaymentAndReward();
         }
 
         private void Update()
@@ -41,16 +36,22 @@ namespace UnityTemplateProjects
             {
                 chestObj = GameObject.FindGameObjectWithTag("Chest");
                 chest = chestObj.GetComponent<Chest>();
-                SetPaymentAndReward();
             }
         }
 
         public void OpenPhone()
         {
+            CheckPlayer();
+            SetPaymentAndReward();
             var seq = DOTween.Sequence();
+            seq.Insert(0f, payment.DOColor(Color.white, 0f));
+            seq.Insert(0f, reward.DOColor(Color.white, 0f));
+            seq.Insert(0f, total.DOColor(Color.white, 0f));
             seq.Insert(0f, hint.DOFade(0, 0f));
             seq.Insert(0f, payment.DOFade(0, 0f));
             seq.Insert(0f, reward.DOFade(0, 0f));
+            seq.Insert(0f, total.DOFade(0, 0f));
+            
             seq.Insert(0f, phoneTransform.DOLocalMove(openPhone, 1f));
             
             seq.InsertCallback(.2f, delegate
@@ -59,8 +60,28 @@ namespace UnityTemplateProjects
             });
 
             seq.Insert(1f, payment.DOFade(1, 2f));
-            seq.Insert(2f, reward.DOFade(1, 2f));
-            seq.Insert(5f, hint.DOFade(1, 4f));
+            seq.InsertCallback(2f, delegate
+            {
+                if (!chest.isMimic)
+                {
+                    seq.Insert(2f, reward.DOFade(1, 2f));
+                }
+            });
+            seq.InsertCallback(4f, delegate
+            {
+                if (!passed)
+                {
+                    seq.Insert(4f, payment.DOColor(Color.red, .5f));
+                    seq.Insert(4f, payment.DOFade(.1f, 2f));
+                    if (!chest.isMimic)
+                    {
+                        seq.Insert(5f, reward.DOColor(Color.red, .5f));
+                        seq.Insert(5f, reward.DOFade(.1f, 2f));
+                    }
+                }
+            });
+            seq.Insert(5f, total.DOFade(1, 2f));
+            seq.Insert(7f, hint.DOFade(1, 4f));
         }
 
         public void ClosePhone(bool animate)
@@ -81,7 +102,6 @@ namespace UnityTemplateProjects
                 seq.Insert(0f, phoneTransform.DOLocalMove(closedPhone, 0f));
                 seq.Insert(0f, hint.DOFade(0, 0f));
             }
-            
         }
 
         public bool IsPhoneOpen()
@@ -91,18 +111,39 @@ namespace UnityTemplateProjects
 
         public void SetPaymentAndReward()
         {
-            Debug.Log("Payment being set");
-            var chestObj = GameObject.FindGameObjectWithTag("Chest");
-            Debug.Log("Chest Found");
-            chest = chestObj.GetComponent<Chest>();
+            var totalAmount = 0;
+            if (!chest.isMimic && passed)
+            {
+                totalAmount = chest.GetChestPayment() + chest.GetChestPrize();
+            }
+            else if (chest.isMimic && passed)
+            {
+                totalAmount = chest.GetChestPayment();
+            }
             payment.text = "Payment: " + chest.GetChestPayment() + "p";
             reward.text = "Chest Reward: " + chest.GetChestPrize() + "p";
-            RewardPlayer();
+            total.text = "Total: " + totalAmount + "p";
+            PlayerManager.AddMoney(totalAmount);
         }
 
-        public void RewardPlayer()
+        private void CheckPlayer()
         {
-            PlayerManager.AddMoney(chest.GetChestPayment() + chest.GetChestPrize());
+            if (chest.isMimic && chest.IsMarked)
+            {
+                passed = true;
+            }
+            else if (chest.isMimic && !chest.IsMarked)
+            {
+                passed = false;
+            }
+            else if (!chest.isMimic && chest.IsMarked)
+            {
+                passed = false;
+            }
+            else if (!chest.isMimic && !chest.IsMarked)
+            {
+                passed = true;
+            }
         }
     }
 }

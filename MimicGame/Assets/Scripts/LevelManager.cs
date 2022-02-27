@@ -35,7 +35,7 @@ namespace UnityTemplateProjects
 
         private void SpawnChest()
         {
-            var chest = Instantiate(chestObj, chestSpawn.position, chestSpawn.rotation);
+            GameObject chest = Instantiate(chestObj, chestSpawn.position, chestSpawn.rotation);
             BaseGameManager.chestManager.GenerateChest(chest);
             if (SceneManager.GetActiveScene().name == "Forest")
             {
@@ -56,10 +56,6 @@ namespace UnityTemplateProjects
             var itemSpawnList = itemSpawn.GetComponentsInChildren<Transform>().ToList();
             itemSpawnList.RemoveAt(0);
             BaseGameManager.chestManager.SpawnOwnerItems(itemSpawnList);
-            foreach (var spawn in itemSpawnList)
-            {
-                Debug.Log("Spawn name: " + spawn.name);
-            }
         }
     }
 }
