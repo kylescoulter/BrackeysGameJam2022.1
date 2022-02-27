@@ -14,6 +14,8 @@ namespace UnityTemplateProjects
         public String owner;
         public Boolean hasRune;
         public Boolean isMimic;
+        
+        
 
         [Header("Chest Renderers")]
         [SerializeField] private GameObject chestObject;
@@ -29,6 +31,7 @@ namespace UnityTemplateProjects
         private bool markable;
         private int prize;
         private int payment;
+        private bool isMarked;
 
         public void ReskinChest(Material chestMat, Material trimMat, Material lockMat, Material lockTrimMat, String ownerStr, bool rune)
         {
@@ -52,7 +55,7 @@ namespace UnityTemplateProjects
             lockMaterial = lockMat;
             lockBase.material = lockMat;
             owner = ownerStr;
-            hasRune = rune;
+            //hasRune = rune;
 
             prize = Random.Range(100, 1000);
         }
@@ -63,6 +66,7 @@ namespace UnityTemplateProjects
             {
                 Debug.Log("Marked chest");
                 mark.SetActive(true);
+                isMarked = true;
             }
 
             return mark.activeSelf;
@@ -74,6 +78,7 @@ namespace UnityTemplateProjects
             {
                 Debug.Log("Marked chest");
                 mark.SetActive(false);
+                isMarked = false;
             }
             
             return mark.activeSelf;
@@ -93,6 +98,8 @@ namespace UnityTemplateProjects
         {
             return prize;
         }
+
+        public bool IsMarked => isMarked;
         
         private void OnTriggerEnter(Collider other)
         {

@@ -29,8 +29,8 @@ namespace UnityTemplateProjects
         private static int day;
         private static int money;
 
-
-
+        private bool phoneHasBeenOpened;
+        
         private void Awake()
         {
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
@@ -89,7 +89,6 @@ namespace UnityTemplateProjects
                 }
             }
             
-
             /*if (inputs.interact && chestMarked)
             {
                 Debug.Log("Removing Mark");
@@ -97,27 +96,24 @@ namespace UnityTemplateProjects
             }*/
             if (exitDoor != null)
             {
-                if (inputs.interact && exitDoor.GetLeavable() && !phoneManager.IsPhoneOpen())
+                if (inputs.interact && exitDoor.GetLeavable() && !phoneManager.IsPhoneOpen() && !phoneHasBeenOpened)
                 {
+                    phoneHasBeenOpened = true;
                     exitDoor.ToggleHint(false);
                     phoneManager.OpenPhone();
                     playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = GameObject.FindGameObjectWithTag("PhoneTarget").transform;
                     playerInput.SwitchCurrentActionMap("Phone");
                 }
-                
-                /*if (inputs.interact && phoneManager.IsPhoneOpen())
-                {
-                    Debug.Log("Closing Phone");
-                    exitDoor.ToggleHint(true);
-                    phoneManager.ClosePhone(true);
-                    playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
-                    playerInput.SwitchCurrentActionMap("Player");
-                }*/
             }
 
             if (inputs.exit && exitDoor.GetLeavable() && phoneManager.IsPhoneOpen())
             {
+                if (chestMarked)
+                {
+                    chestMarked = false;
+                }
                 playerInput.SwitchCurrentActionMap("Player");
+                phoneHasBeenOpened = false;
                 Debug.Log("Loading map from phone");
                 phoneManager.ClosePhone(false);
                 DisablePlayer();
@@ -154,6 +150,7 @@ namespace UnityTemplateProjects
 
         public static void AddMoney(int moneyIn)
         {
+            Debug.Log("Adding money to player");
             money += moneyIn;
         }
 
