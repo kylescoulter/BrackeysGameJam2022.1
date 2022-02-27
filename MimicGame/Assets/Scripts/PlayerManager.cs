@@ -25,7 +25,11 @@ namespace UnityTemplateProjects
         private Chest chest;
         private Boolean chestMarked;
         private ExitDoor exitDoor;
-        
+
+        private static int day;
+        private static int money;
+
+
 
         private void Awake()
         {
@@ -44,7 +48,8 @@ namespace UnityTemplateProjects
             playerInput = player.GetComponent<PlayerInput>();
             inputs = player.GetComponent<Inputs>();
 
-            
+            day = 1;
+            money = 0;
         }
 
         private void Start()
@@ -119,6 +124,7 @@ namespace UnityTemplateProjects
                 BaseGameManager.mapLoaded?.Invoke();
                 playerFollowCamera.GetComponent<CinemachineVirtualCamera>().LookAt = null;
                 SceneManager.LoadScene("Map");
+                day++;
             }
         }
 
@@ -145,5 +151,14 @@ namespace UnityTemplateProjects
         {
             return player;
         }
+
+        public static void AddMoney(int moneyIn)
+        {
+            money += moneyIn;
+        }
+
+        public static int Money => money;
+
+        public static int Day => day;
     }
 }

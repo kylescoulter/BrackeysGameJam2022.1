@@ -19,11 +19,30 @@ namespace UnityTemplateProjects
         private Vector3 openPhone;
         private Vector3 closedPhone;
 
+        private GameObject chestObj;
+        private Chest chest;
+
+        private void Awake()
+        {
+            /*BaseGameManager.levelLoaded += SetPaymentAndReward;*/
+        }
+
         private void Start()
         {
+           
             openPhone = openPhoneLocation.transform.localPosition;
             closedPhone = closedPhoneLocation.transform.localPosition;
-            StartCoroutine(SetPaymentAndReward());
+            SetPaymentAndReward();
+        }
+
+        private void Update()
+        {
+            if (chestObj == null)
+            {
+                chestObj = GameObject.FindGameObjectWithTag("Chest");
+                chest = chestObj.GetComponent<Chest>();
+                SetPaymentAndReward();
+            }
         }
 
         public void OpenPhone()
@@ -70,12 +89,20 @@ namespace UnityTemplateProjects
             return isPhoneOpen;
         }
 
-        public IEnumerator SetPaymentAndReward()
+        public void SetPaymentAndReward()
         {
-            yield return new WaitForSeconds(5);
-            var chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
-            payment.text += chest.GetChestPayment() + "p";
-            reward.text += chest.GetChestPrize() + "p";
+            Debug.Log("Payment being set");
+            var chestObj = GameObject.FindGameObjectWithTag("Chest");
+            Debug.Log("Chest Found");
+            chest = chestObj.GetComponent<Chest>();
+            payment.text = "Payment: " + chest.GetChestPayment() + "p";
+            reward.text = "Chest Reward: " + chest.GetChestPrize() + "p";
+            RewardPlayer();
+        }
+
+        public void RewardPlayer()
+        {
+            PlayerManager.AddMoney(chest.GetChestPayment() + chest.GetChestPrize());
         }
     }
 }

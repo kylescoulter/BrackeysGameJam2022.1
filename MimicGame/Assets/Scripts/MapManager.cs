@@ -13,6 +13,9 @@ public class MapManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tavernPayment;
     [SerializeField] private TextMeshProUGUI dungeonPayment;
     [SerializeField] private TextMeshProUGUI forestPayment;
+    [SerializeField] private TextMeshProUGUI rent;
+    [SerializeField] private TextMeshProUGUI day;
+    [SerializeField] private TextMeshProUGUI playerMoney;
     
 
    
@@ -32,6 +35,7 @@ public class MapManager : MonoBehaviour
         
         
         SetPayments();
+        SetPlayerValues();
         
     }
 
@@ -43,20 +47,24 @@ public class MapManager : MonoBehaviour
 
     private void LoadTavern()
     {
-        SceneManager.LoadScene("Tavern");
         BaseGameManager.levelLoaded?.Invoke();
+        Debug.Log("Tavern Loaded");
+        SceneManager.LoadScene("Tavern");
+        
     }
 
     private void LoadDungeon()
     {
-        SceneManager.LoadScene("Dungeon");
         BaseGameManager.levelLoaded?.Invoke();
+        Debug.Log("Dungeon Loaded");
+        SceneManager.LoadScene("Dungeon");
     }
 
     private void LoadForest()
     {
-        SceneManager.LoadScene("Forest");
         BaseGameManager.levelLoaded?.Invoke();
+        Debug.Log("Forest Loaded");
+        SceneManager.LoadScene("Forest");
     }
 
     private void SetPayments()
@@ -64,5 +72,12 @@ public class MapManager : MonoBehaviour
         tavernPayment.text = BaseGameManager.GetTavernPayment() + "p";
         dungeonPayment.text = BaseGameManager.GetDungeonPayment() + "p";
         forestPayment.text = BaseGameManager.GetForestPayment() + "p";
+    }
+
+    private void SetPlayerValues()
+    {
+        rent.text = "RENT: 10000p";
+        playerMoney.text = "MONEY: " + PlayerManager.Money + "p";
+        day.text = "DAY: " + PlayerManager.Day;
     }
 }
