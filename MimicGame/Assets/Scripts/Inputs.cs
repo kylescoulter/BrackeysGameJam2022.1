@@ -18,6 +18,7 @@ namespace UnityTemplateProjects
 		public bool nextPage;
 		public bool prevPage;
 		public bool exit;
+		public bool escapeGame;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -81,6 +82,11 @@ namespace UnityTemplateProjects
 		{
 			PrevPageInput(value.isPressed);
 		}
+		
+		public void OnEscapeGame(InputValue value)
+		{
+			EscapeGameInput(value.isPressed);
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -134,6 +140,11 @@ namespace UnityTemplateProjects
 		public void PrevPageInput(bool newPrevPageState)
 		{
 			prevPage = newPrevPageState;
+		}
+		
+		public void EscapeGameInput(bool newEscapeGameState)
+		{
+			escapeGame = newEscapeGameState;
 		}
 
 #if !UNITY_IOS || !UNITY_ANDROID
