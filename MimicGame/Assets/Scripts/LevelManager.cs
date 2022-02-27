@@ -21,16 +21,17 @@ namespace UnityTemplateProjects
 
         private void Awake()
         { 
-            player = PlayerManager.GetPlayer();
-            player.GetComponent<Inputs>().cursorLocked = true;
-            player.transform.position = playerSpawn.localPosition;
-            player.transform.rotation = playerSpawn.localRotation;
+            
         }
 
         private void Start()
         {
             SpawnChest();
             SpawnItems();
+            player = PlayerManager.GetPlayer();
+            player.GetComponent<Inputs>().cursorLocked = true;
+            player.transform.position = playerSpawn.localPosition;
+            player.transform.rotation = playerSpawn.localRotation;
         }
 
         private void SpawnChest()
