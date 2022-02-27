@@ -16,6 +16,8 @@ public class MapManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI rent;
     [SerializeField] private TextMeshProUGUI day;
     [SerializeField] private TextMeshProUGUI playerMoney;
+
+    private PlayerManager player;
     
 
    
@@ -25,18 +27,19 @@ public class MapManager : MonoBehaviour
     {
         Cursor.visible = true;
         Screen.lockCursor = false;
-        
+
         TavernBtn.onClick.RemoveAllListeners();
         TavernBtn.onClick.AddListener(LoadTavern);
         DungeonBtn.onClick.RemoveAllListeners();
         DungeonBtn.onClick.AddListener(LoadDungeon);
         ForestBtn.onClick.RemoveAllListeners();
         ForestBtn.onClick.AddListener(LoadForest);
+
+        
         
         
         SetPayments();
         SetPlayerValues();
-        
     }
 
     // Update is called once per frame
@@ -62,9 +65,10 @@ public class MapManager : MonoBehaviour
 
     private void LoadForest()
     {
-        BaseGameManager.levelLoaded?.Invoke();
+        
         Debug.Log("Forest Loaded");
         SceneManager.LoadScene("Forest");
+        BaseGameManager.levelLoaded?.Invoke();
     }
 
     private void SetPayments()
@@ -76,8 +80,9 @@ public class MapManager : MonoBehaviour
 
     private void SetPlayerValues()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         rent.text = "RENT: 10000p";
-        playerMoney.text = "MONEY: " + PlayerManager.Money + "p";
-        day.text = "DAY: " + PlayerManager.Day;
+        playerMoney.text = "MONEY: " + player.Money + "p";
+        day.text = "DAY: " + player.Day;
     }
 }

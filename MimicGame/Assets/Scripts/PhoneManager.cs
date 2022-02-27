@@ -20,14 +20,17 @@ namespace UnityTemplateProjects
         private Vector3 openPhone;
         private Vector3 closedPhone;
 
+        private PlayerManager player;
         private GameObject chestObj;
         private Chest chest;
         private bool passed;
+        
 
         private void Start()
         {
             openPhone = openPhoneLocation.transform.localPosition;
             closedPhone = closedPhoneLocation.transform.localPosition;
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         }
 
         private void Update()
@@ -35,7 +38,10 @@ namespace UnityTemplateProjects
             if (chestObj == null)
             {
                 chestObj = GameObject.FindGameObjectWithTag("Chest");
-                chest = chestObj.GetComponent<Chest>();
+                if (chestObj != null)
+                {
+                    chest = chestObj.GetComponent<Chest>();
+                }
             }
         }
 
@@ -123,7 +129,7 @@ namespace UnityTemplateProjects
             payment.text = "Payment: " + chest.GetChestPayment() + "p";
             reward.text = "Chest Reward: " + chest.GetChestPrize() + "p";
             total.text = "Total: " + totalAmount + "p";
-            PlayerManager.AddMoney(totalAmount);
+            player.AddMoney(totalAmount);
         }
 
         private void CheckPlayer()

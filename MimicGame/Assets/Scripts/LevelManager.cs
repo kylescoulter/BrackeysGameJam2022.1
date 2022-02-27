@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,17 +22,25 @@ namespace UnityTemplateProjects
 
         private void Awake()
         { 
-            player = PlayerManager.GetPlayer();
-            player.GetComponent<Inputs>().cursorLocked = true;
-            player.transform.position = playerSpawn.localPosition;
-            player.transform.rotation = playerSpawn.localRotation;
+            
         }
 
         private void Start()
         {
             SpawnChest();
             SpawnItems();
+            player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<Inputs>().cursorLocked = true;
+            player.transform.position = playerSpawn.localPosition;
+            player.transform.rotation = playerSpawn.localRotation;
         }
+
+        private void Update()
+        {
+            
+        }
+        
+        
 
         private void SpawnChest()
         {
@@ -57,5 +66,6 @@ namespace UnityTemplateProjects
             itemSpawnList.RemoveAt(0);
             BaseGameManager.chestManager.SpawnOwnerItems(itemSpawnList);
         }
+
     }
 }

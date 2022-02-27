@@ -10,32 +10,35 @@ namespace UnityTemplateProjects
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] private GameObject playerPrefab;
-        [SerializeField] private GameObject mainCamera;
+        //
+        private GameObject mainCamera;
 
 
-        private static GameObject player;
-        private static GameObject playerFollowCamera;
+        private GameObject player;
+        private GameObject playerFollowCamera;
         private Inputs inputs;
         private PlayerInput playerInput;
         private GameObject book;
         private GameObject phone;
         private BookManager bookManager;
         private PhoneManager phoneManager;
+        private GameObject chestObj;
         private Chest chest;
         private Boolean chestMarked;
         private ExitDoor exitDoor;
 
-        private static int day;
-        private static int money;
+        private int day;
+        private int money;
         
         private void Awake()
         {
-            player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-            player.GetComponent<Inputs>().cursorLocked = false;
+            
+        }
+
+        private void Start()
+        {
+            player = gameObject;
             playerFollowCamera = GameObject.FindGameObjectWithTag("PlayerFollowCamera");
-            playerFollowCamera.GetComponent<CinemachineVirtualCamera>().Follow =
-                GameObject.FindGameObjectWithTag("CinemachineTarget").transform;
 
             book = player.GetComponentInChildren<BookManager>().gameObject;
             bookManager = book.GetComponent<BookManager>(); 
@@ -48,21 +51,27 @@ namespace UnityTemplateProjects
 
             day = 1;
             money = 0;
-        }
+            EnablePlayer();
 
-        private void Start()
-        {
-            BaseGameManager.levelLoaded = delegate { StartCoroutine(EnablePlayer()); };
-            
-            
-            DisablePlayer();
-            DontDestroyOnLoad(player);
+
+            //DisablePlayer();
+            /*DontDestroyOnLoad(player);
             DontDestroyOnLoad(playerFollowCamera);
-            DontDestroyOnLoad(mainCamera);
+            DontDestroyOnLoad(mainCamera);*/
         }
 
         private void Update()
         {
+            if (chest == null)
+            {
+                chestObj = GameObject.FindGameObjectWithTag("Chest");
+                if (chestObj != null)
+                {
+                    chest = chestObj.GetComponent<Chest>();
+                    exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").GetComponent<ExitDoor>(); 
+                }
+                
+            }
             if (inputs.openBook && !bookManager.IsBookOpen())
             {
                 bookManager.OpenBook();
@@ -114,40 +123,37 @@ namespace UnityTemplateProjects
                 SceneManager.LoadScene("Map");
                 day++;
             }
+            
+            
         }
 
-        public IEnumerator EnablePlayer()
+        public void EnablePlayer()
         {
             player.SetActive(true); 
-            playerFollowCamera.SetActive(true);
-            
-            yield return new WaitForSeconds(5);
-            
-            chest = GameObject.FindGameObjectWithTag("Chest").GetComponent<Chest>();
-            exitDoor = GameObject.FindGameObjectWithTag("ExitDoor").GetComponent<ExitDoor>();
-            
+            //playerFollowCamera.SetActive(true);
         }
 
         public void DisablePlayer()
         {
+            
             player.GetComponent<Inputs>().cursorLocked = false;
-            player.SetActive(false);
-            playerFollowCamera.SetActive(false);
+            //player.SetActive(false);
+            //playerFollowCamera.SetActive(false);
         }
 
-        public static GameObject GetPlayer()
+        public GameObject GetPlayer()
         {
             return player;
         }
 
-        public static void AddMoney(int moneyIn)
+        public void AddMoney(int moneyIn)
         {
             Debug.Log("Adding money to player");
             money += moneyIn;
         }
 
-        public static int Money => money;
+        public int Money => money;
 
-        public static int Day => day;
+        public int Day => day;
     }
 }
