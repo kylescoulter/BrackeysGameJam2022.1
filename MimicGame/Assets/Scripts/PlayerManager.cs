@@ -158,6 +158,11 @@ namespace UnityTemplateProjects
                 }
                 
             }
+
+            if (inputs.escapeGame)
+            {
+                Application.Quit();
+            }
         }
 
         public IEnumerator TurnNextPage()

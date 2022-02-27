@@ -80,6 +80,15 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""EscapeGame"",
+                    ""type"": ""Value"",
+                    ""id"": ""3eda4496-b9c3-41c1-b411-1733d388cdab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -280,6 +289,17 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                     ""action"": ""OpenBook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fda6f645-2b83-44ce-ab26-68421a5bfcb5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscapeGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -458,6 +478,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_OpenBook = m_Player.FindAction("OpenBook", throwIfNotFound: true);
+        m_Player_EscapeGame = m_Player.FindAction("EscapeGame", throwIfNotFound: true);
         // Book
         m_Book = asset.FindActionMap("Book", throwIfNotFound: true);
         m_Book_CloseBook = m_Book.FindAction("CloseBook", throwIfNotFound: true);
@@ -532,6 +553,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_OpenBook;
+    private readonly InputAction m_Player_EscapeGame;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -542,6 +564,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @OpenBook => m_Wrapper.m_Player_OpenBook;
+        public InputAction @EscapeGame => m_Wrapper.m_Player_EscapeGame;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -569,6 +592,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @OpenBook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenBook;
                 @OpenBook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenBook;
                 @OpenBook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenBook;
+                @EscapeGame.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscapeGame;
+                @EscapeGame.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscapeGame;
+                @EscapeGame.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscapeGame;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +617,9 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
                 @OpenBook.started += instance.OnOpenBook;
                 @OpenBook.performed += instance.OnOpenBook;
                 @OpenBook.canceled += instance.OnOpenBook;
+                @EscapeGame.started += instance.OnEscapeGame;
+                @EscapeGame.performed += instance.OnEscapeGame;
+                @EscapeGame.canceled += instance.OnEscapeGame;
             }
         }
     }
@@ -729,6 +758,7 @@ public partial class @InputSystem : IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnOpenBook(InputAction.CallbackContext context);
+        void OnEscapeGame(InputAction.CallbackContext context);
     }
     public interface IBookActions
     {
